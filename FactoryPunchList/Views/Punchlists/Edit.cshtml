@@ -1,0 +1,102 @@
+﻿@model FactoryPunchList.Models.PunchlistImageModel
+@using FactoryPunchList.Models
+
+@{
+    ViewBag.Title = "Edit";
+    var statusList = DropDownChoices.StatusDropDownList;
+    var imageUrl = "/UploadedImages/" + Model.Punchlists.Image;
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm("Edit", "Punchlists", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <h4>Punchlist</h4>
+    <hr />
+    <div class="container">
+        <div class="col-xs-6">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Punchlists.id)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Punchlists.Assignee, "Assignee", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("Assignee", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Punchlists.Assignee, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Punchlists.Type, "Type", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("Type", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Punchlists.Type, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Punchlists.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Punchlists.Description, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Punchlists.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Punchlists.Location, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Punchlists.Location, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Punchlists.Location, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div hidden>
+                @Html.EditorFor(model => model.Punchlists.Image, new { disabled = "disabled", @readonly = "readonly" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Punchlists.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.Punchlists.Status, statusList, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Punchlists.Status, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Punchlists.DueDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Punchlists.DueDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Punchlists.DueDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">New Image</label>
+                <div class="col-md-10">
+                    @Html.TextBox("file", "", new { type = "file" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <label class="control-label col-md-2">Image</label>
+            <img src=@imageUrl class="img-responsive" style="padding-top: 5px" />
+        </div>
+    </div>
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

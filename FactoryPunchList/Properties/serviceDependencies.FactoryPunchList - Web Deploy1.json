@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "mssql2": {
+      "resourceId": null,
+      "type": "mssql.onprem",
+      "connectionId": "factorydbEntities",
+      "secretStore": "AzureAppSettings"
+    },
+    "mssql1": {
+      "resourceId": null,
+      "type": "mssql.onprem",
+      "connectionId": "MyDatabaseEntities",
+      "secretStore": "AzureAppSettings"
+    }
+  }
+}

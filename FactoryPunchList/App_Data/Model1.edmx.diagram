@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4bfc8e07d6844df0a6aeb03ef0d6a5cd" Name="Diagram1">
+        <EntityTypeShape EntityType="factorydbModel.Punchlist" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="factorydbModel.Supervisor" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="factorydbModel.Type" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="factorydbModel.Update" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <AssociationConnector Association="factorydbModel.FK__Punchlist__Assig__6B24EA82" ManuallyRouted="false" />
+        <AssociationConnector Association="factorydbModel.FK__Punchlist__Type__6C190EBB" ManuallyRouted="false" />
+        <AssociationConnector Association="factorydbModel.FK__Updates__Punchli__6E01572D" ManuallyRouted="false" />
+        <AssociationConnector Association="factorydbModel.FK__Updates__Author__6EF57B66" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,88 @@
+﻿@model IEnumerable<FactoryPunchList.App_Data.Punchlist>
+@using FactoryPunchList.Models
+
+@{
+    ViewBag.Title = "Index";
+    var sortItems = DropDownChoices.sortChoices;
+}
+<br/>
+<div class="container">
+    <div class="col-xs-6">
+        @Html.ActionLink("Create New Punch", "Create")
+    </div>
+    <div class="col-xs-6">
+        @using (Html.BeginForm("Filter", "Punchlists", FormMethod.Post, new { id = "form-upload", @Class = "form-horizontal" }))
+        {
+            @Html.AntiForgeryToken()
+            {
+        <div class="container">
+            <div class="col-xs-6">
+                @Html.TextBox("filterItem")
+                @Html.DropDownList("sortItem", sortItems)
+                <input type="submit" value="Filter" class="btn btn-default" />
+            </div>
+        </div>
+            }
+        }
+    </div>
+</div>
+<br/>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            Due Date
+        </th>
+        <th>
+            Assignee
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type1.Title)
+        </th>
+        <th>
+            Updates
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    var count = item.Updates.Count();
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Description)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Location)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Status)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DueDate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Supervisor.FirstName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Type1.Title)
+    </td>
+    <td>
+        @Html.ActionLink(count.ToString(), "Index", "Updates", new { id = item.id}, null)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.id }) |
+        @Html.ActionLink("QR Code", "GenerateQR", "QRStation", new { id = item.id }, null)
+    </td>
+</tr>
+}
+
+</table>
